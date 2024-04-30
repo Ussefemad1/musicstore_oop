@@ -1,4 +1,4 @@
-﻿using ConsoleApp9;
+using ConsoleApp9;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -160,33 +160,23 @@ namespace ConsoleApp9
                     Console.WriteLine("Song is found");
                    
                 }
-
+                else
+                {
+                    Console.WriteLine("Song is not found");
+                }
 
             }
 
         }
 
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
     class instruments : Music
     {
         public string instname;
         public int instprice;
         public int count1 = 0;
         public int count3 = 0;
+        public int count4 = 0;
         public int newprice;
         List<string> instname1 = new List<string>();
         List<int> instprice1 = new List<int>();
@@ -195,21 +185,15 @@ namespace ConsoleApp9
         List<int> Cartprice = new List<int>();
         List<string> solditems = new List<string>();
         List<int> quantity = new List<int>();
-
-
-
         public instruments() { }
         public void count()
         {
             if (instname1.Count > 0)
             {
-
-
                 int count1 = 0;
                 for (int i = 0; i < instname1.Count; i++)
                 {
                     count1++;
-
                 }
                 count1.ToString();
                 Console.WriteLine(count1);
@@ -232,10 +216,6 @@ namespace ConsoleApp9
             count3 = int.Parse(Console.ReadLine());
             quantity.Add(count3);
             Console.WriteLine("instrument successfully added");
-
-
-
-
         }
         public void add2(string instname, int instprice , int quantity2)
         {
@@ -244,7 +224,6 @@ namespace ConsoleApp9
             quantity.Add(quantity2);
 
         }
-      
         public override void delete()
         {
             if (instname1.Count > 0 && instprice1.Count > 0)
@@ -262,7 +241,6 @@ namespace ConsoleApp9
             {
                 Console.WriteLine("No data to delete");
             }
-
         }
         public override void show()
         {
@@ -271,10 +249,7 @@ namespace ConsoleApp9
                for(int i = 0; i< instname1.Count && i<instprice1.Count && i<quantity.Count; i++)
                 {
                     Console.WriteLine($"Instrument name : {instname1[i]} ,  price : {instprice1[i]} , quantity {quantity[i]}");
-                }
-
-
-                
+                }   
             }
             else
             {
@@ -300,9 +275,7 @@ namespace ConsoleApp9
             else
             {
                 Console.WriteLine("Item unavailable");
-            }
-       
-            
+            }         
         }
         public void removecart()
         {
@@ -334,10 +307,11 @@ namespace ConsoleApp9
                     Console.WriteLine("instrument is found");
                     Console.WriteLine(instname);
                     Console.WriteLine(instprice);
-
                 }
-
-
+                else
+                {
+                    Console.WriteLine("instrument not found");
+                }
             }
 
         }
@@ -358,10 +332,6 @@ namespace ConsoleApp9
             {
                 Console.WriteLine("Cart is empty");
             }
-
-
-
-
         }
         public void order()
         {
@@ -388,7 +358,13 @@ namespace ConsoleApp9
                     choice2 = Console.ReadLine();
                     if (choice2 == "yes" || choice2 == "Yes")
                     {
-                        solditems.Add(instname);
+                        foreach (string item in instCart)
+                        {
+                            solditems.Add(instname);
+                            int index=instname1.IndexOf(item);
+                            quantity[index] =quantity[index] - count3;
+
+                        }
 
                     }
                     Console.WriteLine("Thank you for ordering");
@@ -402,12 +378,6 @@ namespace ConsoleApp9
             {
                 Console.WriteLine("Cart is empty");
             }
-
-
-
-
-
-
         }
 
         public void showsold()
@@ -417,35 +387,8 @@ namespace ConsoleApp9
                 Console.WriteLine($" sold items :\n {a}");
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 internal class Program
 {
@@ -565,15 +508,6 @@ internal class Program
             }
 
         }
-
-
-
-
-
-
-
-
-
     }
 
 
