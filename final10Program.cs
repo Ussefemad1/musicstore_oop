@@ -1,4 +1,4 @@
-﻿using ConsoleApp9;
+using ConsoleApp9;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +15,13 @@ using System.IO;
 
 namespace ConsoleApp9
 {
-
+    abstract class item
+    {
+        public abstract void Add1();
+        public abstract void delete();
+        public abstract void show();
+        public abstract void search();
+    }
     class Admin
     {
 
@@ -80,19 +86,20 @@ namespace ConsoleApp9
         }
     }
 
-    class Music
+    class Music:item
     {
         public Music() { }
         public string category;
         public string musicname;
         public string artist;
+
         List<string> category1 = new List<string>();
         List<string> musicname1 = new List<string>();
         List<string> artist1 = new List<string>();
 
 
 
-        public virtual void Add1()
+        public override void Add1()
         {
             Console.WriteLine("Please Enter the music category, name and artist");
             Console.WriteLine("Category :\n ");
@@ -117,7 +124,7 @@ namespace ConsoleApp9
             musicname1.Add(musicname);
             artist1.Add(artist);
         }
-        public virtual void show()
+        public override void show()
         {
             if (category1.Count > 0 && musicname1.Count > 0 && artist1.Count > 0)
             {
@@ -132,7 +139,7 @@ namespace ConsoleApp9
                 Console.WriteLine("No data to show");
             }
         }
-        public virtual void delete()
+        public override void delete()
         {
             if (category1.Count > 0 && musicname1.Count > 0 && artist1.Count > 0)
 
@@ -152,7 +159,7 @@ namespace ConsoleApp9
             }
 
         }
-        public virtual void search()
+        public override void search()
         {
 
             Console.WriteLine("please enter the musicname :");
@@ -170,11 +177,11 @@ namespace ConsoleApp9
                 }
 
             }
-
+            
         }
 
     }
-    class instruments : Music
+    class instruments : item
     {
         public string instname;
         public int instprice;
@@ -517,4 +524,3 @@ internal class Program
 
 
 }
-
